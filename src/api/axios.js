@@ -2,8 +2,8 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "https://primetrade-backend-pxah.vercel.app", // <- use this exact URL
-  withCredentials: true // only if your backend sends/reads cookies; otherwise you can remove
+  baseURL: "https://primetrade-backend-pxah.vercel.app/api",  // <- Correct URL
+  withCredentials: true
 });
 
 export default api;
