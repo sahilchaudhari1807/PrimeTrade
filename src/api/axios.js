@@ -1,26 +1,9 @@
-// axios instance
-import axios from 'axios'
+// src/api/axios.js
+import axios from "axios";
 
-const API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:5000'
-const api = axios.create({ baseURL: API_BASE + '/api' })
+const api = axios.create({
+  baseURL: "https://primetrade-backend-pxah.vercel.app", // <- use this exact URL
+  withCredentials: true // only if your backend sends/reads cookies; otherwise you can remove
+});
 
-// attach token from localStorage
-api.interceptors.request.use((config) => {
-  const token = localStorage.getItem('token')
-  if (token) config.headers.Authorization = `Bearer ${token}`
-  return config
-})
-
-// global 401 handling
-api.interceptors.response.use(
-  res => res,
-  err => {
-    if (err.response && err.response.status === 401) {
-      localStorage.removeItem('token')
-      // optional: window.location.href = '/login'
-    }
-    return Promise.reject(err)
-  }
-)
-
-export default api
+export default api;
